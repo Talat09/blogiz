@@ -53,6 +53,15 @@
       "author_name": "Mehedi Imun Anik",
       "blog_image": "https://startnearshoring.com/wp-content/uploads/2023/07/The_Growing_Importance_of_Cybersecurity.jpg",
       "total_likes": "950"
+    },
+    {
+      "id": "7",
+      "title": "Neural Interfaces: Merging Mind and Machine",
+      "description": "Explore the cutting-edge world of brain-computer interfaces (BCIs), where thoughts can control machines. Learn how neural interfaces are advancing healthcare, enabling communication for the paralyzed, and shaping the future of human-computer interaction.",
+      "publish_date": "2025-05-29",
+      "author_name": "Talat Mahmud",
+      "blog_image": "https://sauvikbanerjjee.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fpanxvrzw%2Fproduction%2F3172a8bd571b5a26677b237cad56bd4efa7bcfe9-1400x800.webp&w=3840&q=75",
+      "total_likes": "100"
     }
   ]
 }

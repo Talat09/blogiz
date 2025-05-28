@@ -1,6 +1,8 @@
 "use client";
 
+import { createBlog } from "@/actions/createBlog";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type FormValues = {
   id: string;
@@ -16,11 +18,25 @@ const CreateBlogForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
-    console.log(data);
+    const response = await fetch("http://localhost:5000/blogs");
+    const blogs = await response.json();
+    data.id = JSON.stringify(blogs.length + 1); // Assign a new ID based on the current length of blogs
+    data.total_likes = "100"; // Initialize total likes to 0
+    try {
+      const res = await createBlog(data);
+      if (res) {
+        toast.success("Blog created successfully!");
+        reset(); // Clear the form
+      }
+    } catch (error: any) {
+      console.log("Error creating blog:", error.message);
+      toast.error(`Failed to create blog. Please try again. ${error.message}`);
+    }
   };
 
   return (
@@ -29,7 +45,7 @@ const CreateBlogForm = () => {
         Post Your <span className="text-accent">Blog</span>
       </h1>
 
-      <div className="hero min-h-screen">
+      <div className="hero ">
         <div className="card w-[50%] shadow-xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
