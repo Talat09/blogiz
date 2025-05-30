@@ -37,7 +37,7 @@ const Navbar = () => {
               <Link href="/about">About Us</Link>
             </li>
             <li>
-              <Link href="/support">Support</Link>
+              <Link href="/blogs/create">Post Blog</Link>
             </li>
           </ul>
         </div>
@@ -57,17 +57,18 @@ const Navbar = () => {
           <li>
             <Link href="/about">About Us</Link>
           </li>
+
           <li>
-            <Link href="/support">Support</Link>
+            <Link href="/blogs/create">Post Blog</Link>
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-3">
         <Link
-          href="/blogs/create"
-          className="btn btn-accent text-white rounded-full px-5"
+          href="/login"
+          className="btn btn-accent text-white rounded-full px-5 bg-black border-none hover:bg-gray-800 transition-colors duration-300"
         >
-          Post Blog
+          Login
         </Link>
       </div>
     </div>
