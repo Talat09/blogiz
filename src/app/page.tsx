@@ -1,5 +1,7 @@
 import LatestBlogs from "@/components/LatestBlogs/LatestBlogs";
 import Banner from "@/components/shared/Banner";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 const HomePage = async () => {
   const res = await fetch("http://localhost:5000/blogs", {
@@ -11,8 +13,10 @@ const HomePage = async () => {
 
   return (
     <>
+      <Header />
       <Banner />
       <LatestBlogs blogs={blogs} />
+      <Footer />
     </>
   );
 };
