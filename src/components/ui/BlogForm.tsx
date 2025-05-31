@@ -46,7 +46,7 @@ const CreateBlogForm = () => {
       </h1>
 
       <div className="hero ">
-        <div className="card w-[50%] shadow-xl bg-base-100">
+        <div className="card w-full max-w-lg shadow-xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">

@@ -7,3 +7,11 @@ export interface Blog {
   blog_image: string;
   total_likes: string; // You can also use `number` if the value is always numeric
 }
+export interface SessionInterface {
+  user?: {
+    name: string | null;
+    email: string | null;
+    image: string | null;
+  };
+  expires: string;
+}

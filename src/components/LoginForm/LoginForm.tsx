@@ -6,6 +6,7 @@ import googleIcon from "@/assets/google.png";
 import githubIcon from "@/assets/github.png";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 type LoginFormInputs = {
   email: string;
@@ -141,6 +142,11 @@ const LoginForm = () => {
             type="button"
             className="btn  btn-circle"
             aria-label="Sign in with Google"
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "http://localhost:3000/dashboard",
+              })
+            }
           >
             <Image src={googleIcon} width={40} height={40} alt="google icon" />
           </button>
@@ -149,6 +155,11 @@ const LoginForm = () => {
             type="button"
             className="btn  btn-circle"
             aria-label="Sign in with GitHub"
+            onClick={() =>
+              signIn("github", {
+                callbackUrl: "http://localhost:3000/dashboard",
+              })
+            }
           >
             <Image src={githubIcon} width={40} height={40} alt="github icon" />
           </button>

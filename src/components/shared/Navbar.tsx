@@ -66,7 +66,7 @@ const Navbar = () => {
       <div className="navbar-end gap-3">
         <Link
           href="/login"
-          className="btn btn-accent text-white rounded-full px-5 bg-black border-none hover:bg-gray-800 transition-colors duration-300"
+          className="  text-white rounded-md px-5 h-auto py-2 bg-accent border-none hover:bg-gray-800 transition-colors duration-300"
         >
           Login
         </Link>
