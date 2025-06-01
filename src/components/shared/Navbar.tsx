@@ -42,8 +42,12 @@ const Navbar = () => {
           </ul>
         </div>
         <Link href="/" className="btn btn-ghost text-xl">
-          <Image src={brandLogo} width={30} height={30} alt="brand logo" />
-          Blogiz
+          <div className="flex items-center gap-2 ">
+            <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+              <div className="w-4 h-4 bg-white rounded-sm transform rotate-12"></div>
+            </div>
+            <span className="text-2xl font-bold">Blogiz</span>
+          </div>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

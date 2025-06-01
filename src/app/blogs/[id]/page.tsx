@@ -18,7 +18,7 @@ export const generateStaticParams = async () => {
   }));
 };
 const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
-  console.log("BlogDetailsPage params:", params);
+  // console.log("BlogDetailsPage params:", params);
   const res = await fetch(`http://localhost:5000/api/v1/blogs/${params.id}`, {
     cache: "no-store",
   });

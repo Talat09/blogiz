@@ -5,7 +5,7 @@ import LatestBlogCard from "../ui/LatestBlogCard";
 import BlogCard from "../ui/BlogCard";
 
 const LatestBlogs = ({ blogs }: { blogs: Blog[] }) => {
-  console.log("Blogs:", blogs);
+  // console.log("Blogs:", blogs);
   return (
     <div className="w-[90%]  mx-auto my-10">
       <h1 className="text-4xl text-center my-5 font-semibold">

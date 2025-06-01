@@ -31,7 +31,7 @@ const RegisterForm = () => {
     setError("");
 
     try {
-      console.log("Register data:", data);
+      // console.log("Register data:", data);
       // TODO: Add actual registration logic here (API call)
     } catch (err) {
       setError("Registration failed. Please try again.");

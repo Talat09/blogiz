@@ -29,7 +29,7 @@ const LoginForm = () => {
     setError("");
 
     try {
-      console.log("Login data:", data);
+      // console.log("Login data:", data);
       // TODO: Add actual login logic here (API call)
     } catch (err) {
       setError("Invalid credentials. Please try again.");

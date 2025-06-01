@@ -25,10 +25,9 @@ const CreateBlogForm = () => {
     const response = await fetch("http://localhost:5000/api/v1/blogs");
     const blogs = await response.json();
 
-    console.log("Form data before submission:", data);
     try {
       const res = await createBlog(data);
-      console.log("Response from createBlog:", res);
+
       if (res.success) {
         toast.success("Blog created successfully!");
         reset(); // Clear the form

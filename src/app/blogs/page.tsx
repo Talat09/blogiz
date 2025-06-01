@@ -10,7 +10,7 @@ const BlogsPage = () => {
   //   const res = await fetch("http://localhost:5000/blogs", { cache: "no-store" });
   //   const blogs = await res.json();
   const { data: blogs, isLoading, isError, error } = useGetBlogsQuery("");
-  console.log("BlogsPage data:", blogs);
+  // console.log("BlogsPage data:", blogs);
   return (
     <>
       <Header />
