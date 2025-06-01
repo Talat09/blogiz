@@ -20,12 +20,12 @@ const LatestBlogs = ({ blogs }: { blogs: Blog[] }) => {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2  gap-8 mt-10 justify-items-center p-4   md:p-10 ">
         {blogs.slice(0, 2).map((blog) => (
-          <LatestBlogCard key={blog.id} blog={blog} />
+          <LatestBlogCard key={blog._id} blog={blog} />
         ))}
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 mt-10 justify-items-center p-4   md:p-10 ">
         {blogs.slice(3).map((blog) => (
-          <BlogCard key={blog.id} blog={blog} />
+          <BlogCard key={blog._id} blog={blog} />
         ))}
       </div>
     </div>

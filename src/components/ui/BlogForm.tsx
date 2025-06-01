@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 type FormValues = {
-  id: string;
   title: string;
   description: string;
   publish_date: string;
@@ -23,13 +22,14 @@ const CreateBlogForm = () => {
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
-    const response = await fetch("http://localhost:5000/blogs");
+    const response = await fetch("http://localhost:5000/api/v1/blogs");
     const blogs = await response.json();
-    data.id = JSON.stringify(blogs.length + 1); // Assign a new ID based on the current length of blogs
-    data.total_likes = "100"; // Initialize total likes to 0
+
+    console.log("Form data before submission:", data);
     try {
       const res = await createBlog(data);
-      if (res) {
+      console.log("Response from createBlog:", res);
+      if (res.success) {
         toast.success("Blog created successfully!");
         reset(); // Clear the form
       }
@@ -41,10 +41,6 @@ const CreateBlogForm = () => {
 
   return (
     <div className="my-10">
-      <h1 className="text-center text-4xl">
-        Post Your <span className="text-accent">Blog</span>
-      </h1>
-
       <div className="hero ">
         <div className="card w-full max-w-lg shadow-xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -107,8 +103,11 @@ const CreateBlogForm = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-accent btn-outline">
-                Post
+              <button
+                type="submit"
+                className="bg-accent py-2 rounded-lg text-white"
+              >
+                Create Post
               </button>
             </div>
           </form>

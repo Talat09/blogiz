@@ -1,16 +1,30 @@
+// actions/createBlog.ts
 "use server";
 
-import { Blog } from "@/type";
+import { ApiResponse, Blog } from "@/type";
 
-export const createBlog = async (data: Blog) => {
-  const response = await fetch("http://localhost:5000/blogs", {
+// import { Blog } from "@/types/blog";
+// import { ApiResponse } from "@/types/api";
+
+export const createBlog = async (
+  data: Omit<Blog, "_id" | "total_likes">
+): Promise<ApiResponse<Blog>> => {
+  const res = await fetch("http://localhost:5000/api/v1/blogs", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
-    cache: "no-store", // Ensure the latest data is fetched
+    credentials: "include", // if you rely on cookies / JWT
+    cache: "no-store",
   });
-  const newCreatedBlog = await response.json();
-  return newCreatedBlog;
+
+  const payload = (await res.json()) as ApiResponse<Blog>;
+
+  // If the transport-level status was 2xx but the payload says success:false
+  if (!res.ok || !payload.success) {
+    // Normalise the error so caller can throw/catch
+    const msg = payload.success ? res.statusText : payload.message;
+    throw new Error(msg || "Unknown error");
+  }
+
+  return payload;
 };

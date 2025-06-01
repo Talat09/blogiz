@@ -6,7 +6,7 @@ import { FaCalendar } from "react-icons/fa";
 
 const LatestBlogCard = ({ blog }: { blog: Blog }) => {
   return (
-    <div key={blog.id} className="card w-full bg-base-100 shadow-xl">
+    <div key={blog._id} className="card w-full bg-base-100 shadow-xl">
       <figure>
         <Image
           src={blog?.blog_image}
@@ -26,7 +26,7 @@ const LatestBlogCard = ({ blog }: { blog: Blog }) => {
           {blog.description.length > 100
             ? blog.description.slice(0, 180) + "..."
             : blog.description}
-          <Link href={`/blogs/${blog.id}`} className="text-accent">
+          <Link href={`/blogs/${blog._id}`} className="text-accent">
             Read More
           </Link>
         </p>

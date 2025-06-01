@@ -1,5 +1,5 @@
 export interface Blog {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   publish_date: string; // You can change this to Date if you plan to parse it
@@ -15,3 +15,13 @@ export interface SessionInterface {
   };
   expires: string;
 }
+// types/api.ts
+export interface ApiSuccess<T> {
+  success: true;
+  data: T;
+}
+export interface ApiError {
+  success: false;
+  message: string;
+}
+export type ApiResponse<T> = ApiSuccess<T> | ApiError;

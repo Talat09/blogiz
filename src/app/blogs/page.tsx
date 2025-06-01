@@ -27,7 +27,7 @@ const BlogsPage = () => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 mt-10 justify-items-center  ">
           {blogs?.map((blog: Blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+            <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
       </div>

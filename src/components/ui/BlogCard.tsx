@@ -5,6 +5,7 @@ import { AiFillLike } from "react-icons/ai";
 import { FaCalendar } from "react-icons/fa";
 
 const BlogCard = ({ blog }: { blog: Blog }) => {
+  console.log("BlogCard data:", blog);
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>
@@ -30,7 +31,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
           {blog.description.length > 100
             ? blog.description.slice(0, 60) + "..."
             : blog.description}
-          <Link href={`/blogs/${blog.id}`} className="text-accent">
+          <Link href={`/blogs/${blog._id}`} className="text-accent">
             Read More
           </Link>
         </p>
