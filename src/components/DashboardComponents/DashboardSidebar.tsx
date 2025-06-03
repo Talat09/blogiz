@@ -25,15 +25,31 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
 
   const navItems = [
     { href: "/dashboard", icon: <AiOutlineHome />, label: "Home" },
-    { href: "/dashboard/analytics", icon: <AiOutlineBarChart />, label: "Analytics" },
+    {
+      href: "/dashboard/blogs/create",
+      icon: <AiOutlineBarChart />,
+      label: "Create Blog",
+    },
     { href: "/dashboard/inbox", icon: <AiOutlineInbox />, label: "Inbox" },
     { href: "/dashboard/team", icon: <AiOutlineTeam />, label: "Team" },
-    { href: "/dashboard/calendar", icon: <AiOutlineCalendar />, label: "Calendar" },
+    {
+      href: "/dashboard/calendar",
+      icon: <AiOutlineCalendar />,
+      label: "Calendar",
+    },
   ];
 
   const managementItems = [
-    { href: "/dashboard/billing", icon: <AiOutlineCreditCard />, label: "Billing" },
-    { href: "/dashboard/settings", icon: <AiOutlineSetting />, label: "Settings" },
+    {
+      href: "/dashboard/billing",
+      icon: <AiOutlineCreditCard />,
+      label: "Billing",
+    },
+    {
+      href: "/dashboard/settings",
+      icon: <AiOutlineSetting />,
+      label: "Settings",
+    },
   ];
 
   const handleLogout = async () => {
@@ -55,7 +71,9 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full border-2 border-gray-900 overflow-hidden">
               <Image
-                src={session?.user?.image || "https://avatar.iran.liara.run/public"}
+                src={
+                  session?.user?.image || "https://avatar.iran.liara.run/public"
+                }
                 alt="Avatar"
                 width={32}
                 height={32}
@@ -103,7 +121,9 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800"
                       }`}
                   >
-                    <span className="w-5 h-5 flex-shrink-0 text-lg">{icon}</span>
+                    <span className="w-5 h-5 flex-shrink-0 text-lg">
+                      {icon}
+                    </span>
                     {!collapsed && <span>{label}</span>}
                   </Link>
                 </li>
@@ -133,7 +153,9 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800"
                       }`}
                   >
-                    <span className="w-5 h-5 flex-shrink-0 text-lg">{icon}</span>
+                    <span className="w-5 h-5 flex-shrink-0 text-lg">
+                      {icon}
+                    </span>
                     {!collapsed && <span>{label}</span>}
                   </Link>
                 </li>
