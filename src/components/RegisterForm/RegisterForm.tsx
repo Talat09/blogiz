@@ -6,37 +6,60 @@ import googleIcon from "@/assets/google.png";
 import githubIcon from "@/assets/github.png";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { registerUser } from "@/actions/registerUser";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-type RegisterFormInputs = {
+export type UserData = {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 };
-
+export type RegisterData = {
+  username: string;
+  email: string;
+  password: string;
+};
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm<RegisterFormInputs>();
+  } = useForm<UserData>();
 
-  const onSubmit = async (data: RegisterFormInputs) => {
+  const onSubmit = async (data: UserData) => {
     setIsLoading(true);
     setError("");
-
+    const { name: username, email, confirmPassword: password } = data;
+    const registerData = { username, email, password };
     try {
-      // console.log("Register data:", data);
+      console.log("Register data:", registerData);
       // TODO: Add actual registration logic here (API call)
-    } catch (err) {
-      setError("Registration failed. Please try again.");
-    } finally {
+      const res = await registerUser(registerData);
+      console.log("Response from registration:", res);
+      if (res.success) {
+        toast.success("Blog created successfully!");
+
+        reset(); // Clear the form
+        router.push("/login");
+      } else {
+        setIsLoading(false);
+        console.error("Registration failed:", res.message);
+        setError(`Failed to create account. ${res.message}`);
+        toast.error(`Failed to create blog. ${res.message}`);
+      }
+    } catch (err: any) {
       setIsLoading(false);
+      console.error("Error creating account:", err);
+      setError(`Failed to create account. Please try again. ${err.message}`);
+      toast.error(`Failed to create blog. Please try again. ${err.message}`);
     }
   };
 
@@ -47,12 +70,6 @@ const RegisterForm = () => {
         <p className="text-sm text-center text-base-content/70">
           Sign up to get started
         </p>
-
-        {error && (
-          <div className="alert alert-error text-sm mt-4">
-            <span>{error}</span>
-          </div>
-        )}
 
         <div className="form-control">
           <label className="label" htmlFor="name">
@@ -155,10 +172,14 @@ const RegisterForm = () => {
             </span>
           )}
         </div>
-
+        {error && (
+          <div className="alert alert-error text-sm  text-white font-medium mt-4">
+            <span>{error}</span>
+          </div>
+        )}
         <div className="form-control mt-6">
           <button
-            className="btn btn-primary"
+            className="bg-accent py-2 rounded-lg text-white font-medium hover:bg-black"
             type="submit"
             disabled={isLoading}
           >
