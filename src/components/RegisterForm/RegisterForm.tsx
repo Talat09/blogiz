@@ -9,18 +9,8 @@ import { useForm } from "react-hook-form";
 import { registerUser } from "@/actions/registerUser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { UserData } from "@/type";
 
-export type UserData = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-export type RegisterData = {
-  username: string;
-  email: string;
-  password: string;
-};
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,14 +42,14 @@ const RegisterForm = () => {
       } else {
         setIsLoading(false);
         console.error("Registration failed:", res.message);
-        setError(`Failed to create account. ${res.message}`);
-        toast.error(`Failed to create blog. ${res.message}`);
+        setError(`Failed to Registration. ${res.message}`);
+        toast.error(`Failed to Registration. ${res.message}`);
       }
     } catch (err: any) {
       setIsLoading(false);
-      console.error("Error creating account:", err);
-      setError(`Failed to create account. Please try again. ${err.message}`);
-      toast.error(`Failed to create blog. Please try again. ${err.message}`);
+      console.error("Error Registration:", err);
+      setError(`Failed to Registration. Please try again. ${err.message}`);
+      toast.error(`Failed to Registration. Please try again. ${err.message}`);
     }
   };
 

@@ -1,11 +1,11 @@
 "use server";
 
-import { RegisterData } from "@/type";
+import { LoginUserData } from "@/type";
 
 const url = process.env.BACKEND_URL;
 console.log("Backend URL:", url);
-export const registerUser = async (data: RegisterData) => {
-  const res = await fetch(`${url}/register`, {
+export const loginUser = async (data: LoginUserData) => {
+  const res = await fetch(`${url}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -7,34 +7,49 @@ import githubIcon from "@/assets/github.png";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-
-type LoginFormInputs = {
-  email: string;
-  password: string;
-};
+import { LoginUserData } from "@/type";
+import { loginUser } from "@/actions/loginUser";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<LoginFormInputs>();
+  } = useForm<LoginUserData>();
 
-  const onSubmit = async (data: LoginFormInputs) => {
+  const onSubmit = async (data: LoginUserData) => {
     setIsLoading(true);
     setError("");
 
     try {
-      // console.log("Login data:", data);
-      // TODO: Add actual login logic here (API call)
-    } catch (err) {
-      setError("Invalid credentials. Please try again.");
-    } finally {
+      console.log("login Data:", data);
+      // TODO: Add actual registration logic here (API call)
+      const res = await loginUser(data);
+      console.log("Response from Login:", res);
+      if (res.accessToken && res.success) {
+        toast.success("Login successfully!");
+        localStorage.setItem("accessToken", res.accessToken);
+        reset();
+        router.push("/dashboard");
+      } else {
+        setIsLoading(false);
+        console.error("Login failed:", res.message);
+        setError(`Failed to Login. ${res.message}`);
+        toast.error(`Failed to Login. ${res.message}`);
+      }
+    } catch (err: any) {
       setIsLoading(false);
+      console.error("Error Login:", err);
+      setError(`Failed to Login. Please try again. ${err.message}`);
+      toast.error(`Failed to Login. Please try again. ${err.message}`);
     }
   };
 

@@ -25,3 +25,18 @@ export interface ApiError {
   message: string;
 }
 export type ApiResponse<T> = ApiSuccess<T> | ApiError;
+export type LoginUserData = {
+  email: string;
+  password: string;
+};
+export type UserData = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+export type RegisterData = {
+  username: string;
+  email: string;
+  password: string;
+};
