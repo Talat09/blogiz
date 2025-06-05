@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import googleIcon from "@/assets/google.png";
 import githubIcon from "@/assets/github.png";
@@ -11,6 +11,8 @@ import { LoginUserData } from "@/type";
 import { loginUser } from "@/actions/loginUser";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+
+import { setAccessToken } from "@/utils/setAccessToken";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,27 +31,43 @@ const LoginForm = () => {
     setIsLoading(true);
     setError("");
 
-    try {
-      console.log("login Data:", data);
-      // TODO: Add actual registration logic here (API call)
-      const res = await loginUser(data);
-      console.log("Response from Login:", res);
-      if (res.accessToken && res.success) {
-        toast.success("Login successfully!");
-        localStorage.setItem("accessToken", res.accessToken);
-        reset();
-        router.push("/dashboard");
-      } else {
-        setIsLoading(false);
-        console.error("Login failed:", res.message);
-        setError(`Failed to Login. ${res.message}`);
-        toast.error(`Failed to Login. ${res.message}`);
-      }
-    } catch (err: any) {
+    // try {
+    //   // TODO: Add actual registration logic here (API call)
+    //   const res = await loginUser(data);
+
+    //   if (res?.accessToken && res?.success) {
+    //     toast.success("Login successfully!");
+    //     // localStorage.setItem("accessToken", res.accessToken);
+
+    //     setAccessToken({ accessToken: res.accessToken });
+    //     reset();
+    //     router.push("/dashboard");
+    //   } else {
+    //     setIsLoading(false);
+    //     console.error("Login failed:", res.message);
+    //     setError(`Failed to Login. ${res.message}`);
+    //     toast.error(`Failed to Login. ${res.message}`);
+    //   }
+    // } catch (err: any) {
+    //   setIsLoading(false);
+    //   console.error("Error Login:", err);
+    //   setError(`Failed to Login. Please try again. ${err.message}`);
+    //   toast.error(`Failed to Login. Please try again. ${err.message}`);
+    // }
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+      callbackUrl: "/dashboard",
+    });
+
+    if (res?.ok && res.url) {
+      toast.success("Login successful!");
+      router.push(res.url);
+    } else {
+      toast.error("Invalid credentials!");
+      setError("Invalid email or password.");
       setIsLoading(false);
-      console.error("Error Login:", err);
-      setError(`Failed to Login. Please try again. ${err.message}`);
-      toast.error(`Failed to Login. Please try again. ${err.message}`);
     }
   };
 

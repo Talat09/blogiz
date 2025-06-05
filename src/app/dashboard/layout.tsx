@@ -9,6 +9,8 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Check if user is authenticated
+
   const session = await getServerSession(authOptions);
   if (!session || !session.user) {
     redirect("/"); // Redirect unauthorized users

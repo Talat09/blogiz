@@ -15,6 +15,7 @@ export interface SessionInterface {
   };
   expires: string;
 }
+
 // types/api.ts
 export interface ApiSuccess<T> {
   success: true;
@@ -40,3 +41,18 @@ export type RegisterData = {
   email: string;
   password: string;
 };
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+  }
+
+  interface User {
+    accessToken?: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    accessToken?: string;
+  }
+}

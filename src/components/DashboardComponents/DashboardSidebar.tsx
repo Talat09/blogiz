@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiOutlineHome,
   AiOutlineBarChart,
@@ -18,11 +18,23 @@ import { CiLogout } from "react-icons/ci";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { SessionInterface } from "@/type";
+import { decodedToken } from "@/utils/jwt";
 
 export function DashboardSidebar({ session }: { session: SessionInterface }) {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
+  const [userInfo, setUserInfo] = useState<any>(null); // Adjust type accordingly
 
+  const token = (session as { accessToken?: string })?.accessToken;
+
+  useEffect(() => {
+    if (token) {
+      const decodedData = decodedToken(token);
+      console.log("decoded Data :", decodedData);
+      setUserInfo(decodedData);
+    }
+  }, [token]);
+  console.log("decoded user info :", userInfo);
   const navItems = [
     { href: "/dashboard", icon: <AiOutlineHome />, label: "Home" },
     {
@@ -69,7 +81,7 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
       >
         {!collapsed && (
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full border-2 border-gray-900 overflow-hidden">
+            <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden">
               <Image
                 src={
                   session?.user?.image || "https://avatar.iran.liara.run/public"
@@ -81,7 +93,9 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
               />
             </div>
             <span className="uppercase font-semibold text-xs text-gray-900 dark:text-gray-100">
-              {session?.user?.name || "Dashboard"}
+              {session?.user?.name ||
+                userInfo?.email?.split("@")[0] ||
+                "Dashboard"}
             </span>
           </div>
         )}

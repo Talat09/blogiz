@@ -1,3 +1,6 @@
 export { default } from "next-auth/middleware";
 
-export const config = { matcher: ["/dashboard"] };
+// Match all routes you want to protect or evaluate
+export const config = {
+  matcher: ["/dashboard"], // Add other routes as needed
+};
