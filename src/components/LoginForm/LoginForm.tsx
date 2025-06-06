@@ -8,11 +8,9 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { LoginUserData } from "@/type";
-import { loginUser } from "@/actions/loginUser";
+
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
-import { setAccessToken } from "@/utils/setAccessToken";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,29 +29,6 @@ const LoginForm = () => {
     setIsLoading(true);
     setError("");
 
-    // try {
-    //   // TODO: Add actual registration logic here (API call)
-    //   const res = await loginUser(data);
-
-    //   if (res?.accessToken && res?.success) {
-    //     toast.success("Login successfully!");
-    //     // localStorage.setItem("accessToken", res.accessToken);
-
-    //     setAccessToken({ accessToken: res.accessToken });
-    //     reset();
-    //     router.push("/dashboard");
-    //   } else {
-    //     setIsLoading(false);
-    //     console.error("Login failed:", res.message);
-    //     setError(`Failed to Login. ${res.message}`);
-    //     toast.error(`Failed to Login. ${res.message}`);
-    //   }
-    // } catch (err: any) {
-    //   setIsLoading(false);
-    //   console.error("Error Login:", err);
-    //   setError(`Failed to Login. Please try again. ${err.message}`);
-    //   toast.error(`Failed to Login. Please try again. ${err.message}`);
-    // }
     const res = await signIn("credentials", {
       redirect: false,
       email: data.email,
