@@ -38,11 +38,16 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
   const navItems = [
     { href: "/dashboard", icon: <AiOutlineHome />, label: "Home" },
     {
+      href: "/dashboard/blogs",
+      icon: <AiOutlineInbox />,
+      label: "All Blogs",
+    },
+    {
       href: "/dashboard/blogs/create",
       icon: <AiOutlineBarChart />,
       label: "Create Blog",
     },
-    { href: "/dashboard/inbox", icon: <AiOutlineInbox />, label: "Inbox" },
+
     { href: "/dashboard/team", icon: <AiOutlineTeam />, label: "Team" },
     {
       href: "/dashboard/calendar",
