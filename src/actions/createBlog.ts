@@ -9,7 +9,7 @@ import { ApiResponse, Blog } from "@/type";
 export const createBlog = async (
   data: Omit<Blog, "_id" | "total_likes">
 ): Promise<ApiResponse<Blog>> => {
-  const res = await fetch("http://localhost:5000/api/v1/blogs", {
+  const res = await fetch("https://blogiz-backend.vercel.app/api/v1/blogs", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

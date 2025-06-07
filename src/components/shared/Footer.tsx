@@ -4,9 +4,12 @@ import { HiArrowRight } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 const Footer = async () => {
-  const res = await fetch("http://localhost:5000/api/visit/increment", {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    "https://blogiz-backend.vercel.app/api/visit/increment",
+    {
+      cache: "no-store",
+    }
+  );
   const visitor = await res.json();
 
   return (

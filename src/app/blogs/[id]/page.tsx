@@ -11,7 +11,7 @@ interface BlogDetailsPageProps {
 }
 //this function generates  for the first 3 blogs which will be used for static generation
 export const generateStaticParams = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/blogs");
+  const res = await fetch("https://blogiz-backend.vercel.app/api/v1/blogs");
   const blogs = await res.json();
   return blogs.slice(0, 3).map((blog: Blog) => ({
     id: blog._id.toString(),
@@ -19,9 +19,12 @@ export const generateStaticParams = async () => {
 };
 const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
   // console.log("BlogDetailsPage params:", params);
-  const res = await fetch(`http://localhost:5000/api/v1/blogs/${params.id}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `https://blogiz-backend.vercel.app/api/v1/blogs/${params.id}`,
+    {
+      cache: "no-store",
+    }
+  );
   const blog = await res.json();
   return (
     <div>

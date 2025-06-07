@@ -22,7 +22,9 @@ const CreateBlogForm = () => {
   } = useForm<FormValues>();
 
   const onSubmit = async (data: FormValues) => {
-    const response = await fetch("http://localhost:5000/api/v1/blogs");
+    const response = await fetch(
+      "https://blogiz-backend.vercel.app/api/v1/blogs"
+    );
     const blogs = await response.json();
 
     try {

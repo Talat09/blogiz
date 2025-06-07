@@ -4,7 +4,7 @@ import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 
 const HomePage = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/blogs", {
+  const res = await fetch("https://blogiz-backend.vercel.app/api/v1/blogs", {
     next: {
       revalidate: 30, // Revalidate every 30 seconds
     },

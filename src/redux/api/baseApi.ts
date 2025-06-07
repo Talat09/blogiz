@@ -9,8 +9,9 @@ interface MyTokenPayload {
 
 export const baseApi = createApi({
   reducerPath: "api",
+  tagTypes: ["Post"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "https://blogiz-backend.vercel.app/",
     prepareHeaders: async (headers) => {
       const session = await getSession(); // Get session from NextAuth
       console.log("session :", session);
@@ -28,12 +29,14 @@ export const baseApi = createApi({
   endpoints: (build) => ({
     getBlogs: build.query({
       query: () => `/api/v1/blogs`,
+      providesTags: ["Post"],
     }),
     deleteBlog: build.mutation({
       query: (id: string) => ({
         url: `/api/v1/blogs/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Post"],
     }),
   }),
 });
