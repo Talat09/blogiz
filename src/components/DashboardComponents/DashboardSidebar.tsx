@@ -70,7 +70,7 @@ export function DashboardSidebar({ session }: { session: SessionInterface }) {
   ];
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "http://localhost:3000" });
+    await signOut({ callbackUrl: "https://blogiz-one.vercel.app" });
   };
 
   return (

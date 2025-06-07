@@ -152,7 +152,7 @@ const LoginForm = () => {
             aria-label="Sign in with Google"
             onClick={() =>
               signIn("google", {
-                callbackUrl: "http://localhost:3000/dashboard",
+                callbackUrl: "https://blogiz-one.vercel.app/dashboard",
               })
             }
           >
@@ -165,7 +165,7 @@ const LoginForm = () => {
             aria-label="Sign in with GitHub"
             onClick={() =>
               signIn("github", {
-                callbackUrl: "http://localhost:3000/dashboard",
+                callbackUrl: "https://blogiz-one.vercel.app/dashboard",
               })
             }
           >
