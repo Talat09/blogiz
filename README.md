@@ -53,7 +53,7 @@ A simple blog platform built with Next.js, authentication, and MongoDB.
    ```
 
 
-2. **Open [http://localhost:3000](http://localhost:3000)**
+2. **Open [https://blogiz-one.vercel.app/](https://blogiz-one.vercel.app/)**
 
 ## 🔗 Live Demo
 
